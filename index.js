@@ -48,6 +48,7 @@ discordClient.on('presenceUpdate', async (o, newActivity) => {
     try {
         if (newActivity.activities.length > 0 && (newActivity.status != 'invisible' || newActivity.status != 'offline') && newActivity.userId == config.discordUserID) {
             const thisActivity = newActivity.activities[0];
+            if (thisActivity.type !== Discord.ActivityType.Custom) return
             const emoji = thisActivity.emoji ? thisActivity.emoji.name : "";
             let thisStatus = (emoji + " " + thisActivity.state).trim();
             if (thisStatus != lastStatus) {
